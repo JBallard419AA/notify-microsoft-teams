@@ -105814,6 +105814,7 @@ const {
       url: placeholder
     },
     commits = [],
+    ref_name,
     head_commit = {
       timestamp: placeholder
     }
@@ -105827,33 +105828,33 @@ const statuses = [{
   icon: '✓',
   activityTitle: 'Success!',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/success.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/success.png'
 
 }, {
   id: 'failure',
   icon: '✗',
   activityTitle: 'Failure',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/failure.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/failure.png'
 
 }, {
   id: 'cancelled',
   icon: 'o',
   activityTitle: 'Cancelled',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/cancelled.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/cancelled.png'
 }, {
   id: 'skipped',
   icon: '⤼',
   activityTitle: 'Skipped',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/skipped.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/skipped.png'
 }, {
   id: 'unknown',
   icon: '?',
   activityTitle: 'No job context has been provided',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/unknown.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/unknown.png'
 }];
 
 function Status(status) {
@@ -106013,7 +106014,7 @@ class MSTeams {
       type: 'TextBlock',
       size: 'Medium',
       weight: 'Bolder',
-      text: title !== '' ? title : `${sender.login} ${eventName} initialised workflow"${workflow}"`,
+      text: title !== '' ? title : `${sender.login} ${eventName} initialised workflow"${workflow} on branch ${ref_name}"`,
       style: 'heading',
       wrap: true
     };
@@ -106032,11 +106033,6 @@ class MSTeams {
           type: 'Action.OpenUrl',
           title: 'Repository',
           url: repository.html_url
-        },
-        {
-          type: 'Action.OpenUrl',
-          title: 'Compare',
-          url: compare
         }
       ]
     };
@@ -111588,6 +111584,8 @@ async function run() {
 		let msteams_emails= core.getInput('msteams_emails');
 		let raw = core.getInput('raw');
 		let dry_run = core.getInput('dry_run');
+
+		repo
 
 		core.info(`Parsed params:\n${JSON.stringify({
 			webhook_url: '***',
