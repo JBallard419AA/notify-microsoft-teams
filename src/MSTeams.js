@@ -15,7 +15,7 @@ const {
       url: placeholder
     },
     commits = [],
-    ref_name,
+    ref,
     head_commit = {
       timestamp: placeholder
     }
@@ -215,7 +215,7 @@ class MSTeams {
       type: 'TextBlock',
       size: 'Medium',
       weight: 'Bolder',
-      text: title !== '' ? title : `${sender.login} ${eventName} initialised workflow"${workflow} on branch ${ref_name}"`,
+      text: title !== '' ? title : `${sender.login} ${eventName} initialised workflow"${workflow} on branch ${ref}"`,
       style: 'heading',
       wrap: true
     };
