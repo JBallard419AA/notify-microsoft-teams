@@ -24,6 +24,8 @@ const {
   workflow
 } = github;
 
+ jobStatus="success"
+
 const statuses = [{
   id: 'success',
   icon: '✓',
@@ -94,6 +96,7 @@ const summary_generator = (obj, status_key) => {
       value: status.activityTitle
     });
     if (status.id === 'failure' && obj[step_id].outputs.length) {
+      jobStatus ='failure';
       let text = `${step_id}:\n`;
       text += outputs2markdown(obj[step_id].outputs);
       if (text !== '')
@@ -128,10 +131,10 @@ const emailsToMsTeamsEntities = (emails) => {
   });
 };
 
-const statusSummary = (job) => {
+const statusSummary = (status) => {
   const {
     activityTitle, activitySubtitle, activityImage, color
-  } = Status(job.status);
+  } = Status(status);
   return [
     {
       type: 'ColumnSet',
@@ -192,7 +195,7 @@ class MSTeams {
                         }) {
     const steps_summary = summary_generator(steps, 'outcome');
     const needs_summary = summary_generator(needs, 'result');
-    const status_summary = statusSummary(job);
+    const status_summary = statusSummary(jobStatus);
 
     const commitChangeLog = changelog ?
       [
