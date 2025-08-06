@@ -111585,7 +111585,6 @@ async function run() {
 		let raw = core.getInput('raw');
 		let dry_run = core.getInput('dry_run');
 
-		repo
 
 		core.info(`Parsed params:\n${JSON.stringify({
 			webhook_url: '***',
