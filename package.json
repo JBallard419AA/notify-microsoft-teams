@@ -4,7 +4,7 @@
   "description": "Microsoft Teams Notification for Github Actions",
   "main": "dist/index.js",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/skitionek"
+    "registry": "https://npm.pkg.github.com/JBallard419AA"
   },
   "scripts": {
     "package": "ncc build src -o dist",

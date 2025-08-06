@@ -29,33 +29,33 @@ const statuses = [{
   icon: '✓',
   activityTitle: 'Success!',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/success.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/success.png'
 
 }, {
   id: 'failure',
   icon: '✗',
   activityTitle: 'Failure',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/failure.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/failure.png'
 
 }, {
   id: 'cancelled',
   icon: 'o',
   activityTitle: 'Cancelled',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/cancelled.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/cancelled.png'
 }, {
   id: 'skipped',
   icon: '⤼',
   activityTitle: 'Skipped',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/skipped.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/skipped.png'
 }, {
   id: 'unknown',
   icon: '?',
   activityTitle: 'No job context has been provided',
   activitySubtitle: head_commit.timestamp,
-  activityImage: 'https://raw.githubusercontent.com/Skitionek/notify-microsoft-teams/master/icons/unknown.png'
+  activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/unknown.png'
 }];
 
 function Status(status) {
