@@ -220,6 +220,7 @@ class MSTeams {
       wrap: true
     };
 
+
     const repositoryLink = {
       type: 'TextBlock',
       size: 'Medium',
