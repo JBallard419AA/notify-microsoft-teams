@@ -24,7 +24,7 @@ const {
   workflow
 } = github;
 
- jobStatus="success"
+var jobStatus="success"
 
 const statuses = [{
   id: 'success',
@@ -95,7 +95,7 @@ const summary_generator = (obj, status_key) => {
       title: `${status.icon} ${truncateString(step_id, 15)}`,
       value: status.activityTitle
     });
-    if (status.id === 'failure' && obj[step_id].outputs.length) {
+    if (status.id === 'Failure' && obj[step_id].outputs.length) {
       jobStatus ='failure';
       let text = `${step_id}:\n`;
       text += outputs2markdown(obj[step_id].outputs);
