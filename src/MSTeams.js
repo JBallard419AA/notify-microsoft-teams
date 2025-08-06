@@ -15,6 +15,7 @@ const {
       url: placeholder
     },
     commits = [],
+    ref_name,
     head_commit = {
       timestamp: placeholder
     }
@@ -214,7 +215,7 @@ class MSTeams {
       type: 'TextBlock',
       size: 'Medium',
       weight: 'Bolder',
-      text: title !== '' ? title : `${sender.login} ${eventName} initialised workflow"${workflow}"`,
+      text: title !== '' ? title : `${sender.login} ${eventName} initialised workflow"${workflow} on branch ${ref_name}"`,
       style: 'heading',
       wrap: true
     };
@@ -233,11 +234,6 @@ class MSTeams {
           type: 'Action.OpenUrl',
           title: 'Repository',
           url: repository.html_url
-        },
-        {
-          type: 'Action.OpenUrl',
-          title: 'Compare',
-          url: compare
         }
       ]
     };
