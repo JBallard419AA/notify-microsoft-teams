@@ -53,7 +53,7 @@ const statuses = [{
 }, {
   id: 'unknown',
   icon: '?',
-  activityTitle: 'No job context has been provided',
+  activityTitle: 'job is still running',
   activitySubtitle: head_commit.timestamp,
   activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/unknown.png'
 }];
@@ -232,7 +232,7 @@ class MSTeams {
       text: repository_link
     };
 
-    const actionLinks = {
+    var actionLinks = {
       type: 'ActionSet',
       actions: [
         {
@@ -242,6 +242,18 @@ class MSTeams {
         }
       ]
     };
+
+    const runwayurl= 'https://developer.aa.com/catalog/default/component/'+repository.name;
+
+    const runwayButton=  {
+      type: 'Action.OpenUrl',
+      title: 'Sync Runway',
+      url: runwayurl
+    }
+
+    if(workflow_status=='success')
+      actionLinks.actions.push(runwayurl);
+
 
     const entities = msteams_emails.length > 0 ? emailsToMsTeamsEntities(csvToArray(msteams_emails)) : [{}];
 
