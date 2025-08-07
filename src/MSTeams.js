@@ -252,7 +252,7 @@ class MSTeams {
     }
 
     if(workflow_status=='success')
-      actionLinks.actions.push(runwayurl);
+      actionLinks.actions.push(runwayButton);
 
 
     const entities = msteams_emails.length > 0 ? emailsToMsTeamsEntities(csvToArray(msteams_emails)) : [{}];
