@@ -220,7 +220,7 @@ class MSTeams {
       type: 'TextBlock',
       size: 'Medium',
       weight: 'Bolder',
-      text: title !== '' ? title : `${sender.login} ${eventName}  deploying branch ${ref} on environment ${env}"`,
+      text: title !== '' ? title : `${sender.login} deploying branch ${ref} of ${repository.name} on environment ${env}"`,
       style: 'heading',
       wrap: true
     };
@@ -270,7 +270,7 @@ class MSTeams {
     if(workflow_status==='unknown')
       actionLinks.actions.push(abortButton);
 
-    if(workflow_status==='cancelled')
+    if(workflow_status==='cancelled'||workflow_status==='failure')
       actionLinks.actions.push(cancelButton)
 
 
