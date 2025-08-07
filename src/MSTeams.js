@@ -220,7 +220,7 @@ class MSTeams {
       type: 'TextBlock',
       size: 'Medium',
       weight: 'Bolder',
-      text: title !== '' ? title : `${sender.login} ${eventName}  deploying branch ${ref} on Enviorment ${env}"`,
+      text: title !== '' ? title : `${sender.login} ${eventName}  deploying branch ${ref} on environment ${env}"`,
       style: 'heading',
       wrap: true
     };
