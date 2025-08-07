@@ -105420,7 +105420,7 @@ class MSTeams {
       type: 'TextBlock',
       size: 'Medium',
       weight: 'Bolder',
-      text: title !== '' ? title : `${sender.login} ${eventName}  deploying branch ${ref} on Enviorment ${dev}"`,
+      text: title !== '' ? title : `${sender.login} ${eventName}  deploying branch ${ref} on Enviorment ${env}"`,
       style: 'heading',
       wrap: true
     };
@@ -112702,6 +112702,7 @@ async function run() {
 			title,
 			msteams_emails,
 			dry_run,
+			env,
 			workflow_status
 		})}`);
 
@@ -112715,7 +112716,8 @@ async function run() {
 					needs,
 					title,
 					msteams_emails,
-					env
+					env,
+					workflow_status
 				}
 			);
 		} else {

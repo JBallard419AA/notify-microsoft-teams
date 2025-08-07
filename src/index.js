@@ -44,6 +44,7 @@ async function run() {
 			title,
 			msteams_emails,
 			dry_run,
+			env,
 			workflow_status
 		})}`);
 
@@ -57,7 +58,8 @@ async function run() {
 					needs,
 					title,
 					msteams_emails,
-					env
+					env,
+					workflow_status
 				}
 			);
 		} else {
