@@ -105253,7 +105253,7 @@ const statuses = [{
 }, {
   id: 'unknown',
   icon: '?',
-  activityTitle: 'job is still running',
+  activityTitle: 'Job is running ...',
   activitySubtitle: head_commit.timestamp,
   activityImage: 'https://raw.githubusercontent.com/JBallard419AA/notify-microsoft-teams/master/icons/unknown.png'
 }];
@@ -105444,6 +105444,7 @@ class MSTeams {
     };
 
     const runwayurl= 'https://developer.aa.com/catalog/default/component/'+repository.name;
+    const joburl= repository.html_url+'/action/'+github.runId
 
     const runwayButton=  {
       type: 'Action.OpenUrl',
@@ -105451,8 +105452,17 @@ class MSTeams {
       url: runwayurl
     }
 
-    if(workflow_status=='success')
+    const abortButton=  {
+      type: 'Action.OpenUrl',
+      title: 'Abort Job',
+      url: joburl
+    }
+
+    if(workflow_status==='success')
       actionLinks.actions.push(runwayButton);
+
+    if(workflow_status==='unknown')
+      actionLinks.actions.push(abortButton);
 
 
     const entities = msteams_emails.length > 0 ? emailsToMsTeamsEntities(csvToArray(msteams_emails)) : [{}];
