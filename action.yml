@@ -26,6 +26,13 @@ inputs:
   dry_run:
     description: 'Do not actually send the message'
     required: false
+  env:
+    description: 'Environment deploying to'
+    required: true
+  workflow_status:
+    default: "unknown"
+    required: false
+    description: 'workflow status'
 runs:
   using: 'node20'
   main: 'dist/index.js'

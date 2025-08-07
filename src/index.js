@@ -30,6 +30,10 @@ async function run() {
 		let raw = core.getInput('raw');
 		let dry_run = core.getInput('dry_run');
 
+		let workflow_status= core.getInput('workflow_status');
+
+		let env=core.getInput('env');
+
 
 		core.info(`Parsed params:\n${JSON.stringify({
 			webhook_url: '***',
@@ -39,7 +43,8 @@ async function run() {
 			raw,
 			title,
 			msteams_emails,
-			dry_run
+			dry_run,
+			workflow_status
 		})}`);
 
 		const msteams = new MSTeams();
@@ -51,7 +56,8 @@ async function run() {
 					steps,
 					needs,
 					title,
-					msteams_emails
+					msteams_emails,
+					env
 				}
 			);
 		} else {

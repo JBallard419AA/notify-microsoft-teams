@@ -9,7 +9,7 @@ const {
       html_url: placeholder,
       name: placeholder
     },
-    compare,
+
     sender = {
       login: placeholder,
       url: placeholder
@@ -23,8 +23,6 @@ const {
   eventName,
   workflow
 } = github;
-
-var jobStatus="success"
 
 const statuses = [{
   id: 'success',
@@ -96,7 +94,7 @@ const summary_generator = (obj, status_key) => {
       value: status.activityTitle
     });
     if (status.id === 'Failure' && obj[step_id].outputs.length) {
-      jobStatus ='failure';
+
       let text = `${step_id}:\n`;
       text += outputs2markdown(obj[step_id].outputs);
       if (text !== '')
@@ -184,6 +182,8 @@ class MSTeams {
    * @param needs
    * @param title {string} msteams message title
    * @param msteams_emails {string} msteams emails in CSV
+   * @param env
+   * @param workflow_status
    * @return
    */
   async generatePayload({
@@ -191,11 +191,13 @@ class MSTeams {
                           steps = {},
                           needs = {},
                           title = '',
-                          msteams_emails = ''
+                          msteams_emails = '',
+                          env = '',
+                          workflow_status =''
                         }) {
     const steps_summary = summary_generator(steps, 'outcome');
     const needs_summary = summary_generator(needs, 'result');
-    const status_summary = statusSummary(jobStatus);
+    const status_summary = statusSummary(workflow_status);
 
     const commitChangeLog = changelog ?
       [
@@ -218,7 +220,7 @@ class MSTeams {
       type: 'TextBlock',
       size: 'Medium',
       weight: 'Bolder',
-      text: title !== '' ? title : `${sender.login} ${eventName} initialised workflow"${workflow} on branch ${ref}"`,
+      text: title !== '' ? title : `${sender.login} ${eventName}  deploying branch ${ref} on Enviorment ${dev}"`,
       style: 'heading',
       wrap: true
     };
