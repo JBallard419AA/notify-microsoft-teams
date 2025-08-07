@@ -105444,7 +105444,7 @@ class MSTeams {
     };
 
     const runwayurl= 'https://developer.aa.com/catalog/default/component/'+repository.name;
-    const joburl= repository.html_url+'/action/'+github.runId
+    const joburl= repository.html_url+'/actions/runs/'+github.runId
 
     const runwayButton=  {
       type: 'Action.OpenUrl',
@@ -105458,11 +105458,20 @@ class MSTeams {
       url: joburl
     }
 
+    const cancelButton=  {
+      type: 'Action.OpenUrl',
+      title: 'View Job',
+      url: joburl
+    }
+
     if(workflow_status==='success')
       actionLinks.actions.push(runwayButton);
 
     if(workflow_status==='unknown')
       actionLinks.actions.push(abortButton);
+
+    if(workflow_status==='cancelled')
+      actionLinks.actions.push(cancelButton)
 
 
     const entities = msteams_emails.length > 0 ? emailsToMsTeamsEntities(csvToArray(msteams_emails)) : [{}];
